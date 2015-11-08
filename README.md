@@ -5,6 +5,8 @@ The design was inspired by the app [Flat Tomato](https://itunes.apple.com/us/app
 
 Both Swift 2 and Objective-C version are provided.
 
+Note: I am not very farmilar with Objective-C so the OC code might not be very elegant. I would appreciate if you could send me a pull request to improve it :)
+
 ###Demo GIF:
 
 <img src="https://github.com/hkalexling/AWScrollView-Lab/blob/master/AWScrollView.gif" width="350">
@@ -42,7 +44,7 @@ Simplily drag and drog the [AWScrollView.swift](https://github.com/hkalexling/AW
 		    self.awScrollView.mainView.addSubview(self.yourLabel)
         }
         
-- The setup process for Objective-C is exactly the same. Just follow the example above with Objective-C syntax.
+- The set up process for Objective-C is exactly the same. Just do the same thing above in Objective-C syntax.
 
 ###Todo:
 
