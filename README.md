@@ -1,5 +1,5 @@
 # AWScrollView-Lab
-[WIP] An modified UIScrollView 
+[WIP] A modified UIScrollView 
 
 The design was inspired by the app [Flat Tomato](https://itunes.apple.com/us/app/flat-tomato-time-management/id719462746?mt=8)
 
