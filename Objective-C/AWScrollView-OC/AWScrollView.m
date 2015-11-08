@@ -16,10 +16,6 @@
 	
 	self.locked = NO;
 	
-	if (!self.transitionTime){
-		self.transitionTime = 0.5;
-	}
-	
 	self.upPoint = CGPointMake(self.xExtension, 0);
 	self.leftPoint = CGPointMake(0, self.yExtension);
 	self.rightPoint = CGPointMake(2 * self.xExtension, self.yExtension);
@@ -65,6 +61,10 @@
 	
 	if (!self.screenHeight){
 		self.screenHeight = [UIScreen mainScreen].bounds.size.height;
+	}
+	
+	if (!self.transitionTime){
+		self.transitionTime = 0.5;
 	}
 }
 
