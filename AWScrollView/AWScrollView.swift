@@ -22,6 +22,12 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 	let screenWidth = UIScreen.mainScreen().bounds.size.width
 	let screenHeight = UIScreen.mainScreen().bounds.size.height
 	
+	var upPoint : CGPoint!
+	var leftPoint : CGPoint!
+	var rightPoint : CGPoint!
+	var downPoint : CGPoint!
+	var centerPoint : CGPoint!
+	
 	var initialOffset : CGPoint = CGPoint()
 	var locked : Bool = false
 	
@@ -43,6 +49,13 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 	}
 	
 	func setUp(){
+		
+		self.upPoint = CGPointMake(self.xExtension, 0)
+		self.leftPoint = CGPointMake(0, self.yExtension)
+		self.rightPoint = CGPointMake(2 * self.xExtension, self.yExtension)
+		self.downPoint = CGPointMake(self.xExtension, 2 * self.yExtension)
+		self.centerPoint = CGPointMake(self.xExtension, self.yExtension)
+		
 		self.frame = CGRectMake(0, 0, self.screenWidth, self.screenHeight)
 		self.contentOffset = CGPointMake(self.xExtension, self.yExtension)
 		self.contentSize = CGSizeMake(self.screenWidth + 2 * self.xExtension, self.screenHeight + 2 * self.yExtension)

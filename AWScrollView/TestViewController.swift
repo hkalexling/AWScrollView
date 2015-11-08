@@ -18,7 +18,7 @@ class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.awScrollView.backgroundColor = UIColor.blackColor()
+		self.awScrollView.backgroundColor = UIColor.grayColor()
 		
 		//Set up AWScrollView
         self.awScrollView.setUp()
@@ -27,23 +27,48 @@ class TestViewController: UIViewController {
 		self.customize()
     }
 	
+	override func prefersStatusBarHidden() -> Bool {
+		return true
+	}
+	
 	func customize(){
-		let image = UIImageView(frame: CGRectMake(screenWidth/4, screenWidth/4, screenWidth/2, screenWidth/2))
+		
+		let image = UIImageView(frame: CGRectMake(self.screenWidth - self.screenHeight/8, self.screenHeight/8, self.screenHeight/4, self.screenHeight/4))
 		image.image = UIImage(named: "yuno")
-		self.awScrollView.mainView.addSubview(image)
+		self.awScrollView.addSubview(image)
 		
-		let label = UILabel(frame: CGRectMake(0, 0.75 * screenHeight, screenWidth, 0.25 * screenHeight))
-		label.backgroundColor = UIColor.clearColor()
-		label.textColor = UIColor.whiteColor()
-		label.textAlignment = NSTextAlignment.Center
-		label.text = "This is the main view"
-		label.font = UIFont.systemFontOfSize(30)
-		self.awScrollView.mainView.addSubview(label)
+		let dogeImage = UIImageView(frame: CGRectMake(self.screenWidth - self.screenHeight/8, self.screenHeight * 15/8 - self.screenHeight/4, self.screenHeight/4, self.screenHeight/4))
+		dogeImage.image = UIImage(named: "doge")
+		self.awScrollView.addSubview(dogeImage)
+
+		self.labelToSrollView(CGRectMake(self.screenWidth - self.screenHeight/8, self.screenHeight * 3/8 + 30, self.screenHeight/4, 30), text: "By @hkalexling", fontSize: 17)
+		self.labelToSrollView(CGRectMake(0, self.screenHeight - 50, self.screenWidth/2, 100), text: "Open source with WTFPL license", fontSize: 17)
+		self.labelToSrollView(CGRectMake(self.screenWidth * 1.5, self.screenHeight - 50, self.screenWidth/2, 100), text: "Pull requests are most welcome :)", fontSize: 17)
 		
-		self.labelToSrollView(CGRectMake(self.screenWidth/2, self.screenHeight/4, self.screenWidth, 30), text: "Something up here 👇", fontSize: 30)
-		self.labelToSrollView(CGRectMake(self.screenWidth/2, 7 * self.screenHeight/4, self.screenWidth, 30), text: "Something down here 👆", fontSize: 30)
-		self.labelToSrollView(CGRectMake(0, self.screenHeight, self.screenWidth/2, 30), text: "Something left 👉", fontSize: 20)
-		self.labelToSrollView(CGRectMake(1.5 * self.screenWidth, self.screenHeight, self.screenWidth/2, 30), text: "Something right 👈", fontSize: 20)
+		self.labelToSrollView(CGRectMake(self.screenWidth/2 + 50, 2 * self.screenHeight - 60, self.screenHeight/4, 30), text: "Wow", fontSize: 17)
+		self.labelToSrollView(CGRectMake(self.screenWidth + 50, 2 * self.screenHeight - 130, self.screenHeight/4, 30), text: "So ScollView", fontSize: 17)
+		self.labelToSrollView(CGRectMake(self.screenWidth - 220, 2 * self.screenHeight - 200, self.screenHeight/4, 30), text: "Much fancy", fontSize: 17)
+		
+		self.buttonToMainView(CGPointMake(self.screenWidth/2, self.screenHeight/2 - 50), selectorString: "top", color: UIColor.whiteColor())
+		self.buttonToMainView(CGPointMake(self.screenWidth/2 - 50, self.screenHeight/2), selectorString: "left", color: UIColor.whiteColor())
+		self.buttonToMainView(CGPointMake(self.screenWidth/2 + 50, self.screenHeight/2), selectorString: "right", color: UIColor.whiteColor())
+		self.buttonToMainView(CGPointMake(self.screenWidth/2, self.screenHeight/2 + 50), selectorString: "down", color: UIColor.whiteColor())
+	}
+	
+	func top(){
+		self.awScrollView.scrollTo(self.awScrollView.upPoint)
+	}
+	
+	func left(){
+		self.awScrollView.scrollTo(self.awScrollView.leftPoint)
+	}
+	
+	func right(){
+		self.awScrollView.scrollTo(self.awScrollView.rightPoint)
+	}
+	
+	func down(){
+		self.awScrollView.scrollTo(self.awScrollView.downPoint)
 	}
 	
 	func labelToSrollView(frame : CGRect, text : String, fontSize : CGFloat){
@@ -52,7 +77,22 @@ class TestViewController: UIViewController {
 		label.textColor = UIColor.whiteColor()
 		label.textAlignment = NSTextAlignment.Center
 		label.text = text
+		label.lineBreakMode = .ByWordWrapping
+		label.numberOfLines = 0
 		label.font = UIFont.systemFontOfSize(fontSize)
 		self.awScrollView.addSubview(label)
+	}
+	
+	func buttonToMainView(position : CGPoint, selectorString : String, color : UIColor){
+		let button = UIButton(frame: CGRectMake(position.x - 15, position.y - 15, 30, 30))
+		button.layer.cornerRadius = button.frame.width/2
+		button.clipsToBounds = true
+		button.addTarget(self, action: Selector(selectorString), forControlEvents: .TouchDown)
+		button.backgroundColor = color
+		button.layer.masksToBounds = false
+		button.layer.shadowOffset = CGSize(width: 8, height: 8)
+		button.layer.shadowColor = UIColor.darkGrayColor().CGColor
+		button.layer.shadowOpacity = 1
+		self.awScrollView.mainView.addSubview(button)
 	}
 }
