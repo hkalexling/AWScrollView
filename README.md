@@ -3,7 +3,7 @@ A modified UIScrollView
 
 The design was inspired by the app [Flat Tomato](https://itunes.apple.com/us/app/flat-tomato-time-management/id719462746?mt=8)
 
-Implemented purely in Swift 2.
+Both Swift 2 and Objective-C version are provided.
 
 ###Demo GIF:
 
@@ -11,7 +11,7 @@ Implemented purely in Swift 2.
 
 ###Installation:
 
-Simplily drag and drog the [AWScrollView.swift](https://github.com/hkalexling/AWScrollView/blob/master/AWScrollView/AWScrollView.swift) file into your project
+Simplily drag and drog the [AWScrollView.swift](https://github.com/hkalexling/AWScrollView/blob/master/AWScrollView/AWScrollView.swift) or [AWScrollView.h/m](https://github.com/hkalexling/AWScrollView/tree/master/Objective-C/AWScrollView-OC) file into your project
 
 ###Usage:
 
@@ -41,6 +41,8 @@ Simplily drag and drog the [AWScrollView.swift](https://github.com/hkalexling/AW
 		    self.awScrollView.addSubview(self.yourImageView)
 		    self.awScrollView.mainView.addSubview(self.yourLabel)
         }
+        
+- The setup process for Objective-C is exactly the same. Just follow the example above with Objective-C syntax.
 
 ###Todo:
 
@@ -48,7 +50,7 @@ Simplily drag and drog the [AWScrollView.swift](https://github.com/hkalexling/AW
 - [X] Clean the code
 - [X] Customisable content size
 - [X] Make the demo app looks better
-- [ ] Objective-C version
+- [X] Objective-C version
 
 ###One More Thing
 
