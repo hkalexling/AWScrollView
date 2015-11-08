@@ -3,7 +3,7 @@ A modified UIScrollView
 
 The design was inspired by the app [Flat Tomato](https://itunes.apple.com/us/app/flat-tomato-time-management/id719462746?mt=8)
 
-Implemented purely in Swift 2 and all UI elements were setup programmingly.
+Implemented purely in Swift 2.
 
 ###Demo GIF:
 
