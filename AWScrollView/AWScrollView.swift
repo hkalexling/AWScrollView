@@ -22,6 +22,8 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 	var initialOffset : CGPoint = CGPoint()
 	var locked : Bool = false
 	
+	var transitionTime : NSTimeInterval = 0.5
+	
 	var mainView : UIView!
 	
 	enum ScrollDirection {
@@ -153,7 +155,7 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 	func scrollTo(point : CGPoint){
 		self.locked = false
 		self.scrollEnabled = false
-		UIView.animateWithDuration(0.5, animations: {
+		UIView.animateWithDuration(self.transitionTime, animations: {
 			self.contentOffset = point
 			}, completion: {(finished) in
 				self.locked = true
