@@ -15,7 +15,7 @@ Simplily drag and drog the [AWScrollView.swift](https://github.com/hkalexling/AW
 
 ###Usage:
 
-- In storyboard, drag and drog in a `UIScrollView` into a viewController
+- In storyboard, drag and drog a `UIScrollView` into a viewController
 - Set the class of the `UIScrollView` to be `AWScrollView`
 - Connect the IBOutlet of `AWScrollView` to your view controller class file
 - In your `viewDidLoad`, do the following:
