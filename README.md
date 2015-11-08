@@ -27,8 +27,8 @@ Simplily drag and drog the [AWScrollView.swift](https://github.com/hkalexling/AW
 			self.awScrollView.transitionTime = 0.8
 		    
 			//Customize the content size of AWScrollView if you want
-			self.awScrollView.xExtension + 300 //The x value of contentSize is now 600 + screen width
-			self.awScrollView.yExtension + 500 //The y value of contentSize if now 1000 + screen height
+			self.awScrollView.xExtension = 300 //The x value of contentSize is now 600 + screen width
+			self.awScrollView.yExtension = 500 //The y value of contentSize if now 1000 + screen height
 			
 			//Set the backgroud color to whatever you want
 		    self.awScrollView.backgroundColor = UIColor.blackColor()
