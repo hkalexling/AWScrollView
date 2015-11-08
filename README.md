@@ -1,5 +1,5 @@
-# AWScrollView-Lab
-[WIP] A modified UIScrollView 
+# AWScrollView
+A modified UIScrollView 
 
 The design was inspired by the app [Flat Tomato](https://itunes.apple.com/us/app/flat-tomato-time-management/id719462746?mt=8)
 
@@ -11,7 +11,7 @@ Implemented purely in Swift 2 and all UI elements were setup programmingly.
 
 ###Todo:
 
-- [ ] Create a reusable `AWScrollView` class
+- [X] Create a reusable `AWScrollView` class
 - [ ] Clean the code
 - [ ] Make the demo app looks better
 - [ ] Objective-C version
