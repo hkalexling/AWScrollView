@@ -36,13 +36,17 @@ Simplily drag and drog the [AWScrollView.swift](https://github.com/hkalexling/AW
 		    
 		    //Customize the duration of transition animation if you want
 		    self.awScrollView.transitionTime = 0.8
+		    
+		    //Customize the content size of AWScrollView if you want
+		    self.awScrollView.xExtension + 300 //The x value of contentSize is now 600 + screen width
+		    self.awScrollView.yExtension + 500 //The y value of contentSize if now 1000 + screen height
         }
 
 ###Todo:
 
 - [X] Create a reusable `AWScrollView` class
-- [ ] Clean the code
-- [ ] Customisable content size
+- [X] Clean the code
+- [X] Customisable content size
 - [ ] Make the demo app looks better
 - [ ] Objective-C version
 
