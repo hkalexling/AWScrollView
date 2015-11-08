@@ -5,7 +5,7 @@ The design was inspired by the app [Flat Tomato](https://itunes.apple.com/us/app
 
 Both Swift 2 and Objective-C version are provided.
 
-Note: I am not very farmilar with Objective-C so the OC code might not be very elegant. I would appreciate if you could send me a pull request to improve it :)
+Note: I am not very farmilar with Objective-C so the OC code might not be very elegant. I would appreciate if you could send me a pull request to improve it : )
 
 ###Demo GIF:
 
