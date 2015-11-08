@@ -13,6 +13,7 @@ Implemented purely in Swift 2 and all UI elements were setup programmingly.
 
 - [ ] Create a reusable `AWScrollView` class
 - [ ] Clean the code
+- [ ] Make the demo app looks better
 - [ ] Objective-C version
 
 ###One More Thing
