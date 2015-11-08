@@ -42,7 +42,7 @@ Simplily drag and drog the [AWScrollView.swift](https://github.com/hkalexling/AW
 
 - [X] Create a reusable `AWScrollView` class
 - [ ] Clean the code
-- [ ] Customizable content size
+- [ ] Customisable content size
 - [ ] Make the demo app looks better
 - [ ] Objective-C version
 
