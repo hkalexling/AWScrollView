@@ -18,9 +18,10 @@ class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		self.awScrollView.backgroundColor = UIColor.blackColor()
+		
 		//Set up AWScrollView
         self.awScrollView.setUp()
-		self.awScrollView.backgroundColor = UIColor.blackColor()
 		
 		//Optional
 		self.customize()
