@@ -8,7 +8,7 @@
         <!--Test View Controller-->
         <scene sceneID="NRt-CE-qt7">
             <objects>
-                <viewController id="x0x-8J-nfg" customClass="TestViewController" customModule="AWScrollView_Lab" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="x0x-8J-nfg" customClass="TestViewController" customModule="AWScrollView" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BDa-cG-0tI"/>
                         <viewControllerLayoutGuide type="bottom" id="QnL-kj-VCs"/>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoD-JI-U3a" customClass="AWScrollView" customModule="AWScrollView_Lab" customModuleProvider="target">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoD-JI-U3a" customClass="AWScrollView" customModule="AWScrollView" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <animations/>
                             </scrollView>

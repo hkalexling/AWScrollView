@@ -16,6 +16,9 @@ extension CGFloat{
 
 class AWScrollView: UIScrollView, UIScrollViewDelegate{
 	
+	var xExtension : CGFloat = UIScreen.mainScreen().bounds.size.width/2
+	var yExtension : CGFloat = UIScreen.mainScreen().bounds.size.height/2
+	
 	let screenWidth = UIScreen.mainScreen().bounds.size.width
 	let screenHeight = UIScreen.mainScreen().bounds.size.height
 	
@@ -41,8 +44,8 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 	
 	func setUp(){
 		self.frame = CGRectMake(0, 0, self.screenWidth, self.screenHeight)
-		self.contentOffset = CGPointMake(self.screenWidth/2, self.screenHeight/2)
-		self.contentSize = CGSizeMake(2 * self.screenWidth, 2 * self.screenHeight)
+		self.contentOffset = CGPointMake(self.xExtension, self.yExtension)
+		self.contentSize = CGSizeMake(self.screenWidth + 2 * self.xExtension, self.screenHeight + 2 * self.yExtension)
 		self.delegate = self
 		self.showsHorizontalScrollIndicator = false
 		self.showsVerticalScrollIndicator = false
@@ -51,7 +54,7 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 		
 		self.locked = true
 		
-		self.mainView = UIView(frame: CGRectMake(self.screenWidth/2, self.screenHeight/2, self.screenWidth, self.screenHeight))
+		self.mainView = UIView(frame: CGRectMake(self.xExtension, self.yExtension, self.screenWidth, self.screenHeight))
 		self.mainView.backgroundColor = UIColor.clearColor()
 		
 		let tapRec = UITapGestureRecognizer(target: self, action: Selector("mainViewTapped"))
@@ -61,7 +64,7 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 	}
 	
 	func mainViewTapped(){
-		self.scrollTo(CGPointMake(self.screenWidth/2, self.screenHeight/2))
+		self.scrollTo(CGPointMake(self.xExtension, self.yExtension))
 	}
 	
 	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
@@ -74,34 +77,33 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 			var offset = self.initialOffset
 			
 			if direction == .Up {
-				if self.initialOffset.x.closeTo(self.screenWidth/2) {
-					if self.initialOffset.y.closeTo(self.screenHeight) || self.initialOffset.y.closeTo(self.screenHeight/2) {
-						offset = CGPointMake(self.screenWidth/2, self.initialOffset.y - self.screenHeight/2)
+				if self.initialOffset.x.closeTo(self.xExtension) {
+					if self.initialOffset.y.closeTo(2 * self.yExtension) || self.initialOffset.y.closeTo(self.yExtension) {
+						offset = CGPointMake(self.xExtension, self.initialOffset.y - self.yExtension)
 					}
 				}
 			}
 				
 			else if direction == .Down {
-				if self.initialOffset.x.closeTo(self.screenWidth/2) {
-					if self.initialOffset.y.closeTo(0) || self.initialOffset.y.closeTo(self.screenHeight/2) {
-						offset = CGPointMake(self.screenWidth/2, self.initialOffset.y + self.screenHeight/2)
-						
+				if self.initialOffset.x.closeTo(self.xExtension) {
+					if self.initialOffset.y.closeTo(0) || self.initialOffset.y.closeTo(self.yExtension) {
+						offset = CGPointMake(self.xExtension, self.initialOffset.y + self.yExtension)
 					}
 				}
 			}
 				
 			else if direction == .Left {
-				if self.initialOffset.y.closeTo(self.screenHeight/2) {
-					if self.initialOffset.x.closeTo(self.screenWidth) || self.initialOffset.x.closeTo(self.screenWidth/2) {
-						offset = CGPointMake(self.initialOffset.x - self.screenWidth/2, self.screenHeight/2)
+				if self.initialOffset.y.closeTo(self.yExtension) {
+					if self.initialOffset.x.closeTo(2 * self.xExtension) || self.initialOffset.x.closeTo(self.xExtension) {
+						offset = CGPointMake(self.initialOffset.x - self.xExtension, self.yExtension)
 					}
 				}
 			}
 				
 			else if direction == .Right {
-				if self.initialOffset.y.closeTo(self.screenHeight/2) {
-					if self.initialOffset.x.closeTo(0) || self.initialOffset.y.closeTo(self.screenHeight/2) {
-						offset = CGPointMake(self.initialOffset.x + self.screenWidth/2, self.screenHeight/2)
+				if self.initialOffset.y.closeTo(self.yExtension) {
+					if self.initialOffset.x.closeTo(0) || self.initialOffset.x.closeTo(self.xExtension) {
+						offset = CGPointMake(self.initialOffset.x + self.xExtension, self.yExtension)
 					}
 				}
 			}
