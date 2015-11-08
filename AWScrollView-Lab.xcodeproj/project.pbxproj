@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		715315CC1BEEC0B200721AEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715315CB1BEEC0B200721AEB /* AppDelegate.swift */; };
-		715315CE1BEEC0B200721AEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715315CD1BEEC0B200721AEB /* ViewController.swift */; };
 		715315D11BEEC0B200721AEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 715315CF1BEEC0B200721AEB /* Main.storyboard */; };
 		715315D31BEEC0B200721AEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 715315D21BEEC0B200721AEB /* Assets.xcassets */; };
 		715315D61BEEC0B200721AEB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 715315D41BEEC0B200721AEB /* LaunchScreen.storyboard */; };
+		715315DE1BEED16B00721AEB /* AWScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715315DD1BEED16B00721AEB /* AWScrollView.swift */; };
+		715315E01BEF464F00721AEB /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715315DF1BEF464F00721AEB /* TestViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		715315C81BEEC0B200721AEB /* AWScrollView-Lab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AWScrollView-Lab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		715315CB1BEEC0B200721AEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		715315CD1BEEC0B200721AEB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		715315D01BEEC0B200721AEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		715315D21BEEC0B200721AEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		715315D51BEEC0B200721AEB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		715315D71BEEC0B200721AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		715315DD1BEED16B00721AEB /* AWScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWScrollView.swift; sourceTree = "<group>"; };
+		715315DF1BEF464F00721AEB /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				715315CB1BEEC0B200721AEB /* AppDelegate.swift */,
-				715315CD1BEEC0B200721AEB /* ViewController.swift */,
+				715315DD1BEED16B00721AEB /* AWScrollView.swift */,
+				715315DF1BEF464F00721AEB /* TestViewController.swift */,
 				715315CF1BEEC0B200721AEB /* Main.storyboard */,
 				715315D21BEEC0B200721AEB /* Assets.xcassets */,
 				715315D41BEEC0B200721AEB /* LaunchScreen.storyboard */,
@@ -135,8 +138,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				715315CE1BEEC0B200721AEB /* ViewController.swift in Sources */,
 				715315CC1BEEC0B200721AEB /* AppDelegate.swift in Sources */,
+				715315E01BEF464F00721AEB /* TestViewController.swift in Sources */,
+				715315DE1BEED16B00721AEB /* AWScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
