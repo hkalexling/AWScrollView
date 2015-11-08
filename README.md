@@ -15,9 +15,9 @@ Simplily drag and drog the [AWScrollView.swift](https://github.com/hkalexling/AW
 
 ###Usage:
 
-- In a view controller, drag and drog in a `UIScrollView`
+- In a storyboard, drag and drog in a `UIScrollView` into a viewController
 - Set the class of the `UIScrollView` to be `AWScrollView`
-- Connect the IBOutlet of `AWScrollView` to your view controllwe class file
+- Connect the IBOutlet of `AWScrollView` to your view controller class file
 - In your `viewDidLoad`, do the following:
 
         override func viewDidLoad() {
