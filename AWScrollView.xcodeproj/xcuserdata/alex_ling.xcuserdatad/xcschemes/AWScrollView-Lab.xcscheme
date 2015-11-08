@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "715315C71BEEC0B200721AEB"
-               BuildableName = "AWScrollView-Lab.app"
-               BlueprintName = "AWScrollView-Lab"
-               ReferencedContainer = "container:AWScrollView-Lab.xcodeproj">
+               BuildableName = "AWScrollView.app"
+               BlueprintName = "AWScrollView"
+               ReferencedContainer = "container:AWScrollView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "715315C71BEEC0B200721AEB"
-            BuildableName = "AWScrollView-Lab.app"
-            BlueprintName = "AWScrollView-Lab"
-            ReferencedContainer = "container:AWScrollView-Lab.xcodeproj">
+            BuildableName = "AWScrollView.app"
+            BlueprintName = "AWScrollView"
+            ReferencedContainer = "container:AWScrollView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "715315C71BEEC0B200721AEB"
-            BuildableName = "AWScrollView-Lab.app"
-            BlueprintName = "AWScrollView-Lab"
-            ReferencedContainer = "container:AWScrollView-Lab.xcodeproj">
+            BuildableName = "AWScrollView.app"
+            BlueprintName = "AWScrollView"
+            ReferencedContainer = "container:AWScrollView.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "715315C71BEEC0B200721AEB"
-            BuildableName = "AWScrollView-Lab.app"
-            BlueprintName = "AWScrollView-Lab"
-            ReferencedContainer = "container:AWScrollView-Lab.xcodeproj">
+            BuildableName = "AWScrollView.app"
+            BlueprintName = "AWScrollView"
+            ReferencedContainer = "container:AWScrollView.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
