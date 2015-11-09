@@ -20,10 +20,8 @@ class TestViewController: UIViewController {
 		
 		self.awScrollView.backgroundColor = UIColor.grayColor()
 		
-		//Set up AWScrollView
         self.awScrollView.setUp()
 		
-		//Optional
 		self.customize()
     }
 	

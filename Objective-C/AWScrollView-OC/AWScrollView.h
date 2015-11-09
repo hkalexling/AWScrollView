@@ -25,18 +25,12 @@
 @property CGPoint downPoint;
 @property CGPoint centerPoint;
 
-@property CGPoint initialOffset;
-@property BOOL locked;
-
 @property NSTimeInterval transitionTime;
 @property UIView *mainView;
 
 @end
 
 typedef enum{
-	Horizontal,
-	Vertical,
-	
 	Up,
 	Down,
 	

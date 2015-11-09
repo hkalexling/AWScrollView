@@ -28,17 +28,11 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 	var downPoint : CGPoint!
 	var centerPoint : CGPoint!
 	
-	var initialOffset : CGPoint = CGPoint()
-	var locked : Bool = false
-	
 	var transitionTime : NSTimeInterval = 0.5
 	
 	var mainView : UIView!
 	
 	enum ScrollDirection {
-		case Horizontal
-		case Vertical
-		
 		case Up
 		case Down
 		
@@ -64,8 +58,7 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 		self.showsVerticalScrollIndicator = false
 		self.directionalLockEnabled = true
 		self.bounces = false
-		
-		self.locked = true
+		self.scrollEnabled = false
 		
 		self.mainView = UIView(frame: CGRectMake(self.xExtension, self.yExtension, self.screenWidth, self.screenHeight))
 		self.mainView.backgroundColor = UIColor.clearColor()
@@ -74,108 +67,82 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 		self.mainView.addGestureRecognizer(tapRec)
 		
 		self.addSubview(self.mainView)
+		
+		let panRec = UIPanGestureRecognizer(target: self, action: Selector("paned:"))
+		self.addGestureRecognizer(panRec)
 	}
 	
 	func mainViewTapped(){
 		self.scrollTo(CGPointMake(self.xExtension, self.yExtension))
 	}
 	
-	func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-		self.initialOffset = self.contentOffset
+	func paned(sender : UIPanGestureRecognizer){
+		if sender.state == UIGestureRecognizerState.Began{
+			var scrollDir = ScrollDirection.None
+			let translation = sender.translationInView(self)
+			if abs(translation.x) > abs(translation.y){
+				if translation.x > 0 {
+					scrollDir = .Left
+				}
+				else{
+					scrollDir = .Right
+				}
+			}
+			else if abs(translation.x) < abs(translation.y){
+				if translation.y > 0 {
+					scrollDir = .Up
+				}
+				else{
+					scrollDir = .Down
+				}
+			}
+			if scrollDir != .None {
+				self.handleScrollDir(scrollDir)
+			}
+		}
 	}
 	
-	func scrollViewDidScroll(scrollView: UIScrollView) {
-		if (self.locked){
-			let direction : ScrollDirection = self.determineScrollDirection(scrollView)
-			var offset = self.initialOffset
+	func handleScrollDir(direction : ScrollDirection){
+		var offset = self.contentOffset
+		
+		if direction == .Up {
+			if self.contentOffset.x.closeTo(self.xExtension) {
+				if self.contentOffset.y.closeTo(2 * self.yExtension) || self.contentOffset.y.closeTo(self.yExtension) {
+					offset = CGPointMake(self.xExtension, self.contentOffset.y - self.yExtension)
+				}
+			}
+		}
 			
-			if direction == .Up {
-				if self.initialOffset.x.closeTo(self.xExtension) {
-					if self.initialOffset.y.closeTo(2 * self.yExtension) || self.initialOffset.y.closeTo(self.yExtension) {
-						offset = CGPointMake(self.xExtension, self.initialOffset.y - self.yExtension)
-					}
+		else if direction == .Down {
+			if self.contentOffset.x.closeTo(self.xExtension) {
+				if self.contentOffset.y.closeTo(0) || self.contentOffset.y.closeTo(self.yExtension) {
+					offset = CGPointMake(self.xExtension, self.contentOffset.y + self.yExtension)
 				}
 			}
-				
-			else if direction == .Down {
-				if self.initialOffset.x.closeTo(self.xExtension) {
-					if self.initialOffset.y.closeTo(0) || self.initialOffset.y.closeTo(self.yExtension) {
-						offset = CGPointMake(self.xExtension, self.initialOffset.y + self.yExtension)
-					}
+		}
+			
+		else if direction == .Left {
+			if self.contentOffset.y.closeTo(self.yExtension) {
+				if self.contentOffset.x.closeTo(2 * self.xExtension) || self.contentOffset.x.closeTo(self.xExtension) {
+					offset = CGPointMake(self.contentOffset.x - self.xExtension, self.yExtension)
 				}
 			}
-				
-			else if direction == .Left {
-				if self.initialOffset.y.closeTo(self.yExtension) {
-					if self.initialOffset.x.closeTo(2 * self.xExtension) || self.initialOffset.x.closeTo(self.xExtension) {
-						offset = CGPointMake(self.initialOffset.x - self.xExtension, self.yExtension)
-					}
+		}
+			
+		else if direction == .Right {
+			if self.contentOffset.y.closeTo(self.yExtension) {
+				if self.contentOffset.x.closeTo(0) || self.contentOffset.x.closeTo(self.xExtension) {
+					offset = CGPointMake(self.contentOffset.x + self.xExtension, self.yExtension)
 				}
 			}
-				
-			else if direction == .Right {
-				if self.initialOffset.y.closeTo(self.yExtension) {
-					if self.initialOffset.x.closeTo(0) || self.initialOffset.x.closeTo(self.xExtension) {
-						offset = CGPointMake(self.initialOffset.x + self.xExtension, self.yExtension)
-					}
-				}
-			}
-			self.scrollTo(offset)
 		}
-	}
-	
-	func determineScrollDirection(localSrcollView : UIScrollView) -> ScrollDirection {
-		var scrollDir : ScrollDirection
-		if self.initialOffset.x != localSrcollView.contentOffset.x && self.initialOffset.y != localSrcollView.contentOffset.y {
-			if abs(self.initialOffset.x - localSrcollView.contentOffset.x) > abs(self.initialOffset.y - localSrcollView.contentOffset.y){
-				scrollDir = .Horizontal
-			}
-			else{
-				scrollDir = .Vertical
-			}
-		}
-		else{
-			if self.initialOffset.x == localSrcollView.contentOffset.x {
-				scrollDir = .Vertical
-			}
-			else{
-				scrollDir = .Horizontal
-			}
-		}
-		if scrollDir == .Horizontal{
-			if self.initialOffset.x > localSrcollView.contentOffset.x {
-				scrollDir = .Left
-			}
-			else if self.initialOffset.x < localSrcollView.contentOffset.x {
-				scrollDir = .Right
-			}
-			else {
-				scrollDir = .None
-			}
-		}
-		else{
-			if self.initialOffset.y > localSrcollView.contentOffset.y {
-				scrollDir = .Up
-			}
-			else if self.initialOffset.y < localSrcollView.contentOffset.y{
-				scrollDir = .Down
-			}
-			else{
-				scrollDir = .None
-			}
-		}
-		return scrollDir
+		self.scrollTo(offset)
 	}
 	
 	func scrollTo(point : CGPoint){
-		self.locked = false
-		self.scrollEnabled = false
 		UIView.animateWithDuration(self.transitionTime, animations: {
 			self.contentOffset = point
-			}, completion: {(finished) in
-				self.locked = true
-				self.scrollEnabled = true
-		})
+			}, completion: nil)
 	}
 }
 

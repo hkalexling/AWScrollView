@@ -14,8 +14,6 @@
 	
 	[self initialize];
 	
-	self.locked = NO;
-	
 	self.upPoint = CGPointMake(self.xExtension, 0);
 	self.leftPoint = CGPointMake(0, self.yExtension);
 	self.rightPoint = CGPointMake(2 * self.xExtension, self.yExtension);
@@ -29,9 +27,8 @@
 	self.showsHorizontalScrollIndicator = NO;
 	self.showsVerticalScrollIndicator = NO;
 	self.directionalLockEnabled = YES;
+	self.scrollEnabled = NO;
 	self.bounces = NO;
-	
-	self.locked = YES;
 	
 	self.mainView = [[UIView alloc] initWithFrame:CGRectMake(self.xExtension, self.yExtension, self.screenWidth, self.screenHeight)];
 	self.mainView.backgroundColor = [UIColor clearColor];
@@ -40,10 +37,39 @@
 	[self.mainView addGestureRecognizer:tapRec];
 	
 	[self addSubview:self.mainView];
+	
+	UIPanGestureRecognizer *panRec = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(paned:)];
+	[self addGestureRecognizer:panRec];
 }
 
 -(void)mainViewTapped{
 	[self scrollTo:CGPointMake(self.xExtension, self.yExtension)];
+}
+
+-(void)paned:(UIPanGestureRecognizer *)sender{
+	if (sender.state == UIGestureRecognizerStateBegan){
+		ScrollDirection scrollDir = None;
+		CGPoint translation = [sender translationInView:self];
+		if (fabs(translation.x) > fabs(translation.y)){
+			if (translation.x > 0) {
+				scrollDir = Left;
+			}
+			else{
+				scrollDir = Right;
+			}
+		}
+		else if (fabs(translation.x) < fabs(translation.y)){
+			if (translation.y > 0) {
+				scrollDir = Up;
+			}
+			else{
+				scrollDir = Down;
+			}
+		}
+		if (scrollDir != None) {
+			[self handleScrollDirection:scrollDir];
+		}
+	}
 }
 
 -(void)initialize{
@@ -68,103 +94,48 @@
 	}
 }
 
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-	self.initialOffset = scrollView.contentOffset;
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-	if (self.locked){
-		ScrollDirection direction = [self determineScrollDirection:scrollView];
-		CGPoint offset = self.initialOffset;
-		
-		if (direction == Up) {
-			if ([self closeBetween:self.initialOffset.x and:self.xExtension]) {
-				if ([self closeBetween:self.initialOffset.y and:2 * self.yExtension] || [self closeBetween:self.initialOffset.y and:self.yExtension]){
-					offset = CGPointMake(self.xExtension, self.initialOffset.y - self.yExtension);
-				}
+-(void)handleScrollDirection:(ScrollDirection)direction{
+	CGPoint offset = self.contentOffset;
+	
+	if (direction == Up) {
+		if ([self closeBetween:self.contentOffset.x and:self.xExtension]) {
+			if ([self closeBetween:self.contentOffset.y and:2 * self.yExtension] || [self closeBetween:self.contentOffset.y and:self.yExtension]){
+				offset = CGPointMake(self.contentOffset.x, self.contentOffset.y - self.yExtension);
 			}
 		}
-		
-		else if (direction == Down) {
-			if ([self closeBetween:self.initialOffset.x and:self.xExtension]) {
-				if ([self closeBetween:self.initialOffset.y and:0] || [self closeBetween:self.initialOffset.y and:self.yExtension]){
-					offset = CGPointMake(self.xExtension, self.initialOffset.y + self.yExtension);
-				}
+	}
+	
+	else if (direction == Down) {
+		if ([self closeBetween:self.contentOffset.x and:self.xExtension]) {
+			if ([self closeBetween:self.contentOffset.y and:0] || [self closeBetween:self.contentOffset.y and:self.yExtension]){
+				offset = CGPointMake(self.xExtension, self.contentOffset.y + self.yExtension);
 			}
 		}
-		
-		else if (direction == Left) {
-			if ([self closeBetween:self.initialOffset.y and:self.yExtension]) {
-				if ([self closeBetween:self.initialOffset.x and:2 * self.xExtension] || [self closeBetween:self.initialOffset.x and:self.xExtension]){
-					offset = CGPointMake(self.initialOffset.x - self.xExtension, self.yExtension);
-				}
+	}
+	
+	else if (direction == Left) {
+		if ([self closeBetween:self.contentOffset.y and:self.yExtension]) {
+			if ([self closeBetween:self.contentOffset.x and:2 * self.xExtension] || [self closeBetween:self.contentOffset.x and:self.xExtension]){
+				offset = CGPointMake(self.contentOffset.x - self.xExtension, self.yExtension);
 			}
 		}
-		
-		else if (direction == Right) {
-			if ([self closeBetween:self.initialOffset.y and:self.yExtension]) {
-				if ([self closeBetween:self.initialOffset.x and:0] || [self closeBetween:self.initialOffset.x and:self.xExtension]){
-					offset = CGPointMake(self.initialOffset.x + self.xExtension, self.yExtension);
-				}
+	}
+	
+	else if (direction == Right) {
+		if ([self closeBetween:self.contentOffset.y and:self.yExtension]) {
+			if ([self closeBetween:self.contentOffset.x and:0] || [self closeBetween:self.contentOffset.x and:self.xExtension]){
+				offset = CGPointMake(self.contentOffset.x + self.xExtension, self.yExtension);
 			}
 		}
-		
-		[self scrollTo:offset];
 	}
-}
-
--(ScrollDirection)determineScrollDirection:(UIScrollView *)localScrollView{
-	ScrollDirection scrollDir;
-	if (self.initialOffset.x != localScrollView.contentOffset.x && self.initialOffset.y != localScrollView.contentOffset.y) {
-		if (ABS(self.initialOffset.x - localScrollView.contentOffset.x) > ABS(self.initialOffset.y - localScrollView.contentOffset.y)){
-			scrollDir = Horizontal;
-		}
-		else{
-			scrollDir = Vertical;
-		}
-	}
-	else{
-		if (self.initialOffset.x == localScrollView.contentOffset.x) {
-			scrollDir = Vertical;
-		}
-		else{
-			scrollDir = Horizontal;
-		}
-	}
-	if (scrollDir == Horizontal){
-		if (self.initialOffset.x > localScrollView.contentOffset.x) {
-			scrollDir = Left;
-		}
-		else if (self.initialOffset.x < localScrollView.contentOffset.x) {
-			scrollDir = Right;
-		}
-		else {
-			scrollDir = None;
-		}
-	}
-	else{
-		if (self.initialOffset.y > localScrollView.contentOffset.y) {
-			scrollDir = Up;
-		}
-		else if (self.initialOffset.y < localScrollView.contentOffset.y){
-			scrollDir = Down;
-		}
-		else{
-			scrollDir = None;
-		}
-	}
-	return scrollDir;
+	
+	[self scrollTo:offset];
 }
 
 -(void)scrollTo:(CGPoint)point{
-	self.locked = NO;
-	self.scrollEnabled = NO;
 	[UIView animateWithDuration:self.transitionTime animations:^{
 		self.contentOffset = point;
-	} completion: ^(BOOL finished){
-		self.locked = YES;
-		self.scrollEnabled = YES;
-	}];
+	} completion: nil];
 }
 
 -(BOOL)closeBetween:(CGFloat) floatA and:(CGFloat) floatB {
