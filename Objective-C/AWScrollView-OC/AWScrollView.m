@@ -98,44 +98,44 @@
 	CGPoint offset = self.contentOffset;
 	
 	if (direction == Up) {
-		if (self.contentOffset.x == self.xExtension){
-			if (self.contentOffset.y == 2 * self.yExtension){
+		if ([self close:self.contentOffset.x and:self.xExtension]){
+			if ([self close:self.contentOffset.y and: 2 * self.yExtension]){
 				offset = CGPointMake(self.xExtension, self.yExtension);
 			}
-			if (self.contentOffset.y == self.yExtension){
+			if ([self close:self.contentOffset.y and: self.yExtension]){
 				offset = CGPointMake(self.xExtension, 0);
 			}
 		}
 	}
 	
 	else if (direction == Down) {
-		if (self.contentOffset.x == self.xExtension){
-			if (self.contentOffset.y == 0){
+		if ([self close:self.contentOffset.x and:self.xExtension]){
+			if ([self close:self.contentOffset.y and: 0]){
 				offset = CGPointMake(self.xExtension, self.yExtension);
 			}
-			if (self.contentOffset.y == self.yExtension){
+			if ([self close:self.contentOffset.y and: self.yExtension]){
 				offset = CGPointMake(self.xExtension, 2 * self.yExtension);
 			}
 		}
 	}
 	
 	else if (direction == Left) {
-		if (self.contentOffset.y == self.yExtension){
-			if (self.contentOffset.x == 2 * self.xExtension){
+		if ([self close:self.contentOffset.y and:self.yExtension]){
+			if ([self close:self.contentOffset.x and: 2 * self.xExtension]){
 				offset = CGPointMake(self.xExtension, self.yExtension);
 			}
-			if (self.contentOffset.x == self.xExtension){
+			if ([self close:self.contentOffset.x and: self.xExtension]){
 				offset = CGPointMake(0, self.yExtension);
 			}
 		}
 	}
 	
 	else if (direction == Right) {
-		if (self.contentOffset.y == self.yExtension){
-			if (self.contentOffset.x == 0){
+		if ([self close:self.contentOffset.y and:self.yExtension]){
+			if ([self close:self.contentOffset.x and: 0]){
 				offset = CGPointMake(self.xExtension, self.yExtension);
 			}
-			if (self.contentOffset.x == self.xExtension){
+			if ([self close:self.contentOffset.x and: self.xExtension]){
 				offset = CGPointMake(2 * self.xExtension, self.yExtension);
 			}
 		}
@@ -148,6 +148,10 @@
 	[UIView animateWithDuration:self.transitionTime animations:^{
 		self.contentOffset = point;
 	} completion: nil];
+}
+
+-(BOOL)close:(CGFloat) float_1 and:(CGFloat) float_2{
+	return fabs(float_1 - float_2) <= 0.5;
 }
 
 @end
