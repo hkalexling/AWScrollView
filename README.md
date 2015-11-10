@@ -9,7 +9,7 @@ Note: I am not very farmilar with Objective-C so the OC code might not be very e
 
 ###Demo GIF:
 
-<img src="https://github.com/hkalexling/AWScrollView/blob/master/AWScrollView.gif" width="350">
+<a href="https://www.youtube.com/watch?v=efNZ2hZ0yOw&feature=youtu.be"><img src="https://j.gifs.com/m6gbrj.gif" align="left" width="48" ></a>
 
 ###Installation:
 
