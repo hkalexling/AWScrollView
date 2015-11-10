@@ -98,33 +98,45 @@
 	CGPoint offset = self.contentOffset;
 	
 	if (direction == Up) {
-		if ([self closeBetween:self.contentOffset.x and:self.xExtension]) {
-			if ([self closeBetween:self.contentOffset.y and:2 * self.yExtension] || [self closeBetween:self.contentOffset.y and:self.yExtension]){
-				offset = CGPointMake(self.contentOffset.x, self.contentOffset.y - self.yExtension);
+		if (self.contentOffset.x == self.xExtension){
+			if (self.contentOffset.y == 2 * self.yExtension){
+				offset = CGPointMake(self.xExtension, self.yExtension);
+			}
+			if (self.contentOffset.y == self.yExtension){
+				offset = CGPointMake(self.xExtension, 0);
 			}
 		}
 	}
 	
 	else if (direction == Down) {
-		if ([self closeBetween:self.contentOffset.x and:self.xExtension]) {
-			if ([self closeBetween:self.contentOffset.y and:0] || [self closeBetween:self.contentOffset.y and:self.yExtension]){
-				offset = CGPointMake(self.xExtension, self.contentOffset.y + self.yExtension);
+		if (self.contentOffset.x == self.xExtension){
+			if (self.contentOffset.y == 0){
+				offset = CGPointMake(self.xExtension, self.yExtension);
+			}
+			if (self.contentOffset.y == self.yExtension){
+				offset = CGPointMake(self.xExtension, 2 * self.yExtension);
 			}
 		}
 	}
 	
 	else if (direction == Left) {
-		if ([self closeBetween:self.contentOffset.y and:self.yExtension]) {
-			if ([self closeBetween:self.contentOffset.x and:2 * self.xExtension] || [self closeBetween:self.contentOffset.x and:self.xExtension]){
-				offset = CGPointMake(self.contentOffset.x - self.xExtension, self.yExtension);
+		if (self.contentOffset.y == self.yExtension){
+			if (self.contentOffset.x == 2 * self.xExtension){
+				offset = CGPointMake(self.xExtension, self.yExtension);
+			}
+			if (self.contentOffset.x == self.xExtension){
+				offset = CGPointMake(0, self.yExtension);
 			}
 		}
 	}
 	
 	else if (direction == Right) {
-		if ([self closeBetween:self.contentOffset.y and:self.yExtension]) {
-			if ([self closeBetween:self.contentOffset.x and:0] || [self closeBetween:self.contentOffset.x and:self.xExtension]){
-				offset = CGPointMake(self.contentOffset.x + self.xExtension, self.yExtension);
+		if (self.contentOffset.y == self.yExtension){
+			if (self.contentOffset.x == 0){
+				offset = CGPointMake(self.xExtension, self.yExtension);
+			}
+			if (self.contentOffset.x == self.xExtension){
+				offset = CGPointMake(2 * self.xExtension, self.yExtension);
 			}
 		}
 	}
@@ -136,10 +148,6 @@
 	[UIView animateWithDuration:self.transitionTime animations:^{
 		self.contentOffset = point;
 	} completion: nil];
-}
-
--(BOOL)closeBetween:(CGFloat) floatA and:(CGFloat) floatB {
-	return ABS(floatA - floatB) <= 0.5;
 }
 
 @end

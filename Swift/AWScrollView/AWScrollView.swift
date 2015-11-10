@@ -8,12 +8,6 @@
 
 import UIKit
 
-extension CGFloat{
-	func closeTo (anotherFloat : CGFloat) -> Bool{
-		return abs(self - anotherFloat) <= 0.5
-	}
-}
-
 class AWScrollView: UIScrollView, UIScrollViewDelegate{
 	
 	var xExtension : CGFloat = UIScreen.mainScreen().bounds.size.width/2
@@ -104,35 +98,46 @@ class AWScrollView: UIScrollView, UIScrollViewDelegate{
 	
 	func handleScrollDir(direction : ScrollDirection){
 		var offset = self.contentOffset
-		
 		if direction == .Up {
-			if self.contentOffset.x.closeTo(self.xExtension) {
-				if self.contentOffset.y.closeTo(2 * self.yExtension) || self.contentOffset.y.closeTo(self.yExtension) {
-					offset = CGPointMake(self.xExtension, self.contentOffset.y - self.yExtension)
+			if self.contentOffset.x == self.xExtension {
+				if self.contentOffset.y == 2 * self.yExtension {
+					offset = CGPointMake(self.xExtension, self.yExtension)
+				}
+				if self.contentOffset.y == self.yExtension {
+					offset = CGPointMake(self.xExtension, 0)
 				}
 			}
 		}
 			
 		else if direction == .Down {
-			if self.contentOffset.x.closeTo(self.xExtension) {
-				if self.contentOffset.y.closeTo(0) || self.contentOffset.y.closeTo(self.yExtension) {
-					offset = CGPointMake(self.xExtension, self.contentOffset.y + self.yExtension)
+			if self.contentOffset.x == self.xExtension {
+				if self.contentOffset.y == 0 {
+					offset = CGPointMake(self.xExtension, self.yExtension)
+				}
+				if self.contentOffset.y == self.yExtension {
+					offset = CGPointMake(self.xExtension, 2 * self.yExtension)
 				}
 			}
 		}
 			
 		else if direction == .Left {
-			if self.contentOffset.y.closeTo(self.yExtension) {
-				if self.contentOffset.x.closeTo(2 * self.xExtension) || self.contentOffset.x.closeTo(self.xExtension) {
-					offset = CGPointMake(self.contentOffset.x - self.xExtension, self.yExtension)
+			if self.contentOffset.y == self.yExtension {
+				if self.contentOffset.x == 2 * self.xExtension {
+					offset = CGPointMake(self.xExtension, self.yExtension)
+				}
+				if self.contentOffset.x == self.xExtension {
+					offset = CGPointMake(0, self.yExtension)
 				}
 			}
 		}
 			
 		else if direction == .Right {
-			if self.contentOffset.y.closeTo(self.yExtension) {
-				if self.contentOffset.x.closeTo(0) || self.contentOffset.x.closeTo(self.xExtension) {
-					offset = CGPointMake(self.contentOffset.x + self.xExtension, self.yExtension)
+			if self.contentOffset.y == self.yExtension {
+				if self.contentOffset.x == 0 {
+					offset = CGPointMake(self.xExtension, self.yExtension)
+				}
+				if self.contentOffset.x == self.xExtension {
+					offset = CGPointMake(2 * self.xExtension, self.yExtension)
 				}
 			}
 		}
