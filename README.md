@@ -7,9 +7,9 @@ Both Swift 2 and Objective-C version are provided.
 
 Note: I am not very farmilar with Objective-C so the OC code might not be very elegant. I would appreciate if you could send me a pull request to improve it : )
 
-###Demo Video (click to play)
+###Demo GIF:
 
-[![Alt text for your video](http://img.youtube.com/vi/efNZ2hZ0yOw/0.jpg)](https://www.youtube.com/watch?v=efNZ2hZ0yOw&feature=youtu.be)
+![](https://github.com/hkalexling/AWScrollView/blob/master/AWScrollView.gif)
 
 ###Installation:
 
