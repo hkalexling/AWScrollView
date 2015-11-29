@@ -22,28 +22,30 @@ Simplily drag and drog the [AWScrollView.swift](https://github.com/hkalexling/AW
 - Connect the IBOutlet of `AWScrollView` to your view controller class file
 - In your `viewDidLoad`, do something like this:
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
             
-            //Customize the duration of transition animation if you want
-			self.awScrollView.transitionTime = 0.8
+    //Customize the duration of transition animation if you want
+    self.awScrollView.transitionTime = 0.8
 		    
-			//Customize the content size of AWScrollView if you want
-			self.awScrollView.xExtension = 300 //The x value of contentSize is now 600 + screen width
-			self.awScrollView.yExtension = 500 //The y value of contentSize if now 1000 + screen height
+    //Customize the content size of AWScrollView if you want
+    self.awScrollView.xExtension = 300 //The x value of contentSize is now 600 + screen width
+    self.awScrollView.yExtension = 500 //The y value of contentSize if now 1000 + screen height
 			
-			//Set the backgroud color to whatever you want
-		    self.awScrollView.backgroundColor = UIColor.blackColor()
+    //Set the backgroud color to whatever you want
+    self.awScrollView.backgroundColor = UIColor.blackColor()
 		
-			//Set up AWScrollView
-            self.awScrollView.setUp()
-		
-		    //Add other UIView to AWScrollView and its mainView here
-		    //eg:
-		    self.awScrollView.addSubview(self.yourImageView)
-		    self.awScrollView.mainView.addSubview(self.yourLabel)
-        }
-        
+    //Set up AWScrollView
+    self.awScrollView.setUp()
+    
+    //Add other UIView to AWScrollView and its mainView here
+    //eg:
+    self.awScrollView.addSubview(self.yourImageView)
+    self.awScrollView.mainView.addSubview(self.yourLabel)
+}
+```
+
 - The set up process for Objective-C is exactly the same. Just do the same thing above in Objective-C syntax.
 
 ###Todo:
